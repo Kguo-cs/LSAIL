@@ -69,9 +69,6 @@ class MyClosedLoopEvaluator:
 
         self.set_up=False
 
-        # self.type_length_array=np.array([0,10,5,10,5,2,5])#{' Bus':1, ' Car':2, ' Heavy Vehicle':3, ' Medium Vehicle':4, ' Motorcycle':5, ' Taxi':6
-        # self.type_width_array=np.array([0,3,2,3,2,1,2])#{' Bus':1, ' Car':2, ' Heavy Vehicle':3, ' Medium Vehicle':4, ' Motorcycle':5, ' Taxi':6
-
 
     def setup(self,device,manager):
         self.set_up=True

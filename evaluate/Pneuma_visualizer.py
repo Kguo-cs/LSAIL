@@ -11,8 +11,8 @@ class Visualizer():
         begin=real_time/1000.0
         sumoCmd = ["/usr/bin/sumo-gui",
                    "-S", "True",
-                   "-a", '/home/xuanyuan/PycharmProjects/sim/gail_sim/data/meta/sumo/type.add.xml',
-                   "-n", "/home/xuanyuan/PycharmProjects/sim/gail_sim/data/meta/networks/"+str(date_index)+".net.xml",
+                   "-a", './gail_sim/data/meta/sumo/type.add.xml',
+                   "-n", "./gail_sim/data/meta/networks/"+str(date_index)+".net.xml",
                    "-b", str(begin),  # begin time
                    "-e", str(begin+20),
                    "--step-length", "0.4",

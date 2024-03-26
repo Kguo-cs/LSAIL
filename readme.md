@@ -1,6 +1,6 @@
 This repo contains the official implementation of our paper: "LASIL: Learner-Aware Supervised Imitation Learning For Long-term Microscopic Traffic Simulation". 
   
-**CVPR 2022**  
+**CVPR 2024**  
 
 
 # Installation 
@@ -26,7 +26,7 @@ python train.py --model_name lasil
 
 ### Evaluation   
 
-Run ```eval.py``` to do closed-loop testing. You need to specify the pretrained model name ```--model_name```. 
+Run ```eval.py``` to do closed-loop testing. You need to specify the pretrained model path ```--ckpt_path```. 
 ```shell
 python eval.py --model_name lasil --ckpt_path path_to_pretrained_model
 ```

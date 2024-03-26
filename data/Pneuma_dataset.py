@@ -38,7 +38,7 @@ class PneumaDataset(Dataset):
             self.dates = range(15, 20)
 
         try:
-            data = np.load('./data/meta/traj_data/' + type + "32_4.npz", allow_pickle=True)
+            data = np.load('./data/meta/traj_data/' + type + ".npz", allow_pickle=True)
 
             self.agent_array = data["agent_array"]
 
@@ -49,7 +49,7 @@ class PneumaDataset(Dataset):
 
             self.agent_array,self.index_array=data_process(self.dates,self.meta_manager.edge_list)
 
-            np.savez_compressed("./data/meta/traj_data/" + type + "32_4.npz",agent_array=self.agent_array,index_array=self.index_array)
+            np.savez_compressed("./data/meta/traj_data/" + type + ".npz",agent_array=self.agent_array,index_array=self.index_array)
 
         self.start_index = list(np.where(self.index_array[:, 1] == 0)[0])#0,20551
 
@@ -188,21 +188,6 @@ class PneumaDataset(Dataset):
 
             agent_polylines[index1,self.history_num_frames-1-t,2]=1
 
-        # if self.use_context_hist:
-        #     agent_polylines[:,-self.history_num_frames-1:-1]=agent_polylines[:,:self.history_num_frames]
-
-        # if is_training:
-        #     perturb=np.random.randn(len(agent_polylines),1,2)*self.centroid_std#*decay#*np.arange(self.history_num_frames)[None,:,None]
-        #
-        #     cur_pos+=perturb[:, 0, :2]
-        #
-            #agent_polylines[:, :1, :2]+=perturb
-
-            #cur_pos=agent_polylines[:, 0, :2]
-
-        # agent_polylines[:, self.history_num_frames-1, :2]=cur_pos
-        # agent_polylines[:, self.history_num_frames-1, 2]=1
-
         all_index = self.index_array[id + frame_index * self.interval]
 
         date_index = all_index[0]
@@ -219,29 +204,17 @@ class PneumaDataset(Dataset):
 
         route_width=route_point[:,:,2]
 
-        #if is_training:
-        #ori_pos=cur_pos+np.random.randn(len(cur_pos),2)#*self.random_ori
-        #else:
         ori_pos=cur_pos+self.ori_std*np.random.randn(len(cur_pos),2)
 
         dist_to_ori=np.linalg.norm(ori_pos[:,None]-route_point[:,:,:2],axis=-1)-route_width
 
-        # dist_to_proj=np.linalg.norm(nearest_route_points[:,None,:2]-route_point[:,:,:2],axis=-1)-route_width
-
         sort_index=np.argsort(dist_to_ori,axis=-1)[:,:self.route_point_num]
 
-        #nearest_index=sort_index[:,0]#np.argmin(dist_to_proj,axis=-1)
-
         first_index=np.arange(agent_num)
-
-        #nearest_route_points =route_point[first_index, nearest_index]
 
         nearest_n_route_points =route_point[first_index[:,None], sort_index]
 
         agent_polylines[:, self.history_num_frames:self.history_num_frames + self.route_point_num] = nearest_n_route_points[..., :3]
-
-        # if self.use_heading:
-        #     agent_polylines[:,self.history_num_frames+self.route_point_num:self.route_idx]=nearest_n_route_points[...,-1].reshape(-1,self.head_dim,3)
 
         nearest_route_points=nearest_n_route_points[:,0]
 
@@ -276,8 +249,6 @@ class PneumaDataset(Dataset):
         goal_array=goal[cur_ids]
 
         goal_postions=goal_array[:,:2]
-
-        #goal_types=goal_array[:,2].astype(bool)
 
         dist_to_goal = np.linalg.norm(cur_pos - goal_postions, axis=-1)
 

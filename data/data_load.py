@@ -130,5 +130,3 @@ def data_process(dates,edge_list):
     index=np.stack(index)
 
     return data,index
-
-#37664915

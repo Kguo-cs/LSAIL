@@ -28,19 +28,7 @@ class TensorFeatureCollate:
 
         target_positions=torch.stack(target_positions_list,dim=0)
 
-        if "value_advs" in batch[0].keys():
-            value_advs_list = []
-            for data in batch:
-                value_advs=data["value_advs"]
-                value_advs_list.append( torch.cat([value_advs, torch.zeros(
-                    [max_len - len(value_advs), value_advs.shape[1]],device=value_advs.device)], dim=0))
-
-            value_advs=torch.stack(value_advs_list,dim=0)
-
-            return agent_polylines,target_positions,value_advs[...,0],value_advs[...,1]
-
-        else:
-            return agent_polylines,target_positions
+        return agent_polylines,target_positions
 
 
 class FeatureCollate:
@@ -49,7 +37,6 @@ class FeatureCollate:
         agent_polylines_list=[]
 
         max_len=0
-
 
         for data in batch:
             agent_polylines_list.append(data["agent_polylines"])
