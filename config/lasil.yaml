@@ -54,7 +54,7 @@ val_data_loader:
 eval:
   num_scenes_to_unroll: 1
   batch_size: 1
-  val_check_interval: 1
+  val_check_interval: 2000
 
 
 log_dir: exp_bc
