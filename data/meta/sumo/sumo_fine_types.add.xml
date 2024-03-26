@@ -1,0 +1,18 @@
+<additional>
+ <vType id="car" maxSpeed="30" accel="2.5" decel="10.0" length="5" minGap="0.1" tau="0.1" carFollowModel="IDM" />
+ <vType id="taxi" maxSpeed="30" accel="2.5" decel="10.0" length="5" minGap="0.1" tau="0.1" carFollowModel="IDM" />
+ <vType id="MediumVehicle" maxSpeed="30" accel="2.5" decel="10.0" length="5.83" minGap="0.1" tau="0.1" carFollowModel="IDM" />
+ <vType id="HeavyVehicle" maxSpeed="17.38373" accel="2.5" decel="10.0" length="12" minGap="0.1" tau="0.1" carFollowModel="IDM" />
+ <vType id="bus" maxSpeed="11.701088" accel="2.5" decel="10.0" length="12" minGap="0.1" tau="0.1" carFollowModel="IDM" />
+ <vType id="motorcycle" maxSpeed="30" accel="2.5" decel="10.0" length="2" minGap="0.1" tau="0.1" carFollowModel="IDM" />
+</additional>
+
+
+
+<!--[[30.        2.5      10.        0.1       0.1     ]-->
+<!-- [30.        2.5      10.        0.1       0.1     ]-->
+<!-- [30.        2.5      10.        0.1       0.1     ]-->
+<!-- [17.38373   2.5      10.        0.1       0.1     ]-->
+<!-- [11.701088  2.5      10.        0.1       0.1     ]-->
+<!-- [30.        2.5      10.        0.1       0.1     ]]-->
+<!--pos_rmse 41.25057390378502 vel_rmse 7.000137534374457 imfeasibility 0.03069426192300223-->

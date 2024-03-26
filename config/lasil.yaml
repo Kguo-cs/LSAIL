@@ -1,0 +1,62 @@
+model_params:
+    #data
+    history_num_frames: 10 #include current
+    future_num_frames: 10
+    route_point_num: 30
+    training_noise_std: 0
+
+    ori_std: 1
+
+    #sim
+    step_time: 0.4
+    sim_len: 50
+    interval: 10
+    goal_threshold_m: 10
+
+    #model
+    rl_baseline: False
+
+    global_num_layers: 1
+    dropout: 0.1
+    d_model: 512
+
+    agent_dist: 20
+    nearest_number: 7 #include self car
+
+    output_gaussian: True
+    output_vel: False
+
+    #vae
+    vae_layer_num: 1
+    latent_dim: 8
+
+    rollout_len: 50
+
+    rollout_interval: 1
+
+    #training
+    learner_w: 1
+
+    #post process
+    proj_on_road: True
+    smooth: True
+    acc_w: 1
+    control_w: 0
+
+train_data_loader:
+    shuffle: True
+    batch_size: 4
+
+val_data_loader:
+    shuffle: False
+    batch_size: 1
+
+eval:
+  num_scenes_to_unroll: 1
+  batch_size: 1
+  val_check_interval: 2000
+
+
+log_dir: exp_bc
+exp_name: lasil
+seed: 42

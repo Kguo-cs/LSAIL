@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <vType id="car" width="2.0" length="5.0" minGap="0" color="255,255,0"/>
+    <vType id="taxi" width="2.0" length="5.0" minGap="0" color="255,255,0"/>
+
+    <vType id="MediumVehicle" width="2.67" length="5.83" minGap="0" color="255,0,255"/>
+
+    <vType id="HeavyVehicle" width="3.33" length="12.5" minGap="0" color="0,255,255"/>
+
+    <vType id="bus" width="4" length="12.5" minGap="0" color="0,255,255"/>
+
+    <vType id="motorcycle" width="1.0" length="2.5" minGap="0" color="0,255,0"/>
+
+</additional>
+<!--    <vType id="bicycle" width="0.5" length="1.5" color="0,0,255"/>-->
+
+<!--    <vType id="pedestrian" width="0.5" length="0.5" color="255,0,0"/>-->
