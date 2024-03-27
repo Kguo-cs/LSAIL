@@ -37,13 +37,7 @@ class VAE_Model(nn.Module):
 
         self.learner_w=cfg["learner_w"]
 
-        # self.std_clip=cfg["std_clip"]
-
-        #self.ori_idx = cfg['ori_idx']
-
         self.ori_std = cfg['ori_std']
-
-        # self.use_hist_vel = cfg["use_hist_vel"]
 
         if self.learner_w!=0:
             latent_dim = cfg['latent_dim']
@@ -52,19 +46,6 @@ class VAE_Model(nn.Module):
             self.encoder = GraphNet(cfg, agent_feat_dim, 2 * latent_dim,layer_num=vae_layer_num)
             self.decoder = GraphNet(cfg, latent_dim + agent_feat_dim - (self.history_num_frames * 2),
                                     self.history_num_frames * 5,layer_num=vae_layer_num)
-
-            # self.hist_clip=cfg['hist_clip']
-            #
-            #
-            # self.sort_route = cfg['sort_route']
-            #
-            # self.sort_idx = 0
-            #
-            # self.max_clip = cfg['max_clip']
-            #
-            # self.perturb_ori=True
-
-            #self.random_ori=0#cfg["random_ori"]
 
     def get_graph_state(self,batch_state,batch_ori_pos,ori_pos,rotate):
 
@@ -167,8 +148,6 @@ class VAE_Model(nn.Module):
 
         noise=self.ori_std*torch.randn_like(expert_rec_rel_state[:, 0])
 
-        #if self.sort_route:
-
         expert_rec_cur = expert_rec_rel_state[:, 0]+noise
 
         route_point_pos = context_state[:, :self.route_point_num]
@@ -187,13 +166,6 @@ class VAE_Model(nn.Module):
 
         expert_rec_state_attr[:, self.history_num_frames:self.route_dim] = route_width[first_index, sort_index]
 
-        # if  self.origin_idx>=self.history_num_frames and not self.sort_route:
-        #     expert_rec_node_pos=node_pos
-        #
-        #     expert_rec_ori_pos=ori_pos
-        #
-        #     expert_rec_rotate=rotate
-        # else:
         expert_rec_abs_state = torch.einsum("nta,nba->ntb", expert_rec_rel_state, rotate) + ori_pos[:, None]
 
         noise = torch.einsum("na,nba->nb", noise, rotate)
