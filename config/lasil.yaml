@@ -5,7 +5,7 @@ model_params:
     route_point_num: 30
     training_noise_std: 0
 
-    ori_std: 1
+    ori_std: 2
 
     #sim
     step_time: 0.4
